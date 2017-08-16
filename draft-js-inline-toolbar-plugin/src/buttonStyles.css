@@ -5,12 +5,12 @@
 .button {
   background: #fbfbfb;
   color: #888;
-  font-size: 18px;
+  font-size: 15px;
   border: 0;
-  padding-top: 5px;
+  padding-top: 4px;
   vertical-align: bottom;
-  height: 34px;
-  width: 36px;
+  height: 30px;
+  width: 32px;
 }
 
 .button svg {
