@@ -57,28 +57,22 @@ export default class Toolbar extends React.Component {
       const relativeParent = getRelativeParent(this.toolbar.parentElement);
       const relativeRect = (relativeParent || document.body).getBoundingClientRect();
       const selectionRect = getVisibleSelectionRect(window);
-      console.log(selectionRect);
-      console.log("window.innerHeight " + window.innerHeight);
-      console.log("window.innerWidth " + window.innerWidth);
 
       if (!selectionRect) return;
 
       let position = {};
 
       if(selectionRect.left < (0.05 * window.innerWidth)){
-        console.log("1");
         position = {
           top: (selectionRect.top - relativeRect.top) - (0.5 * toolbarHeight),
           left: (selectionRect.left - relativeRect.left) + (0.04 * window.innerWidth)
         }
       }else if (selectionRect.left > (0.9 * window.innerWidth)){
-        console.log("2");
         position = {
           top: (selectionRect.top - relativeRect.top) - (0.5 * toolbarHeight),
           left: (selectionRect.left - relativeRect.left) - (0.04 * window.innerWidth)
         }
       }else{
-        console.log("3");
         position = {
           top: (selectionRect.top - relativeRect.top) - (0.5 * toolbarHeight),
           left: (selectionRect.left - relativeRect.left) + (selectionRect.width/2),
