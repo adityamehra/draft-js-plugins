@@ -40,28 +40,6 @@ export default class Toolbar extends React.Component {
     this.props.store.unsubscribeFromItem('selection', this.onSelectionChanged);
   }
 
-  getPosition = (selectionRect, relativeRect) => {
-    let position = {};
-
-    if (selectionRect.left < (0.05 * window.innerWidth)) {
-      position = {
-        top: (selectionRect.top - relativeRect.top) - (0.5 * toolbarHeight),
-        left: (selectionRect.left - relativeRect.left) + (0.04 * window.innerWidth),
-      };
-    } else if (selectionRect.left > (0.9 * window.innerWidth)) {
-      position = {
-        top: (selectionRect.top - relativeRect.top) - (0.5 * toolbarHeight),
-        left: (selectionRect.left - relativeRect.left) - (0.04 * window.innerWidth),
-      };
-    } else {
-      position = {
-        top: (selectionRect.top - relativeRect.top) - (0.5 * toolbarHeight),
-        left: (selectionRect.left - relativeRect.left) + (selectionRect.width / 2),
-      };
-    }
-    return position;
-  }
-
   /**
    * This can be called by a child in order to render custom content instead
    * of the regular structure. It's the responsibility of the callee to call
@@ -87,6 +65,28 @@ export default class Toolbar extends React.Component {
     });
   };
 
+  getPosition = (selectionRect, relativeRect) => {
+    let position = {};
+
+    if (selectionRect.left < (0.05 * window.innerWidth)) {
+      position = {
+        top: (selectionRect.top - relativeRect.top) - (0.5 * toolbarHeight),
+        left: (selectionRect.left - relativeRect.left) + (0.04 * window.innerWidth),
+      };
+    } else if (selectionRect.left > (0.9 * window.innerWidth)) {
+      position = {
+        top: (selectionRect.top - relativeRect.top) - (0.5 * toolbarHeight),
+        left: (selectionRect.left - relativeRect.left) - (0.04 * window.innerWidth),
+      };
+    } else {
+      position = {
+        top: (selectionRect.top - relativeRect.top) - (0.5 * toolbarHeight),
+        left: (selectionRect.left - relativeRect.left) + (selectionRect.width / 2),
+      };
+    }
+    return position;
+  }
+
   getStyle() {
     const { store } = this.props;
     const { overrideContent, position } = this.state;
@@ -97,7 +97,7 @@ export default class Toolbar extends React.Component {
     if (isVisible) {
       style.visibility = 'visible';
       style.transform = 'translate(-50%) scale(1)';
-      style.transition = 'transform 0.15s'; // cubic-bezier(.3,1.2,.2,1)
+      style.transition = 'transform 0.15s cubic-bezier(.3,1.2,.2,1)';
     } else {
       style.transform = 'translate(-50%) scale(0)';
       style.visibility = 'hidden';
