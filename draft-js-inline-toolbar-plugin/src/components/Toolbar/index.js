@@ -43,21 +43,21 @@ export default class Toolbar extends React.Component {
   getPosition = (selectionRect, relativeRect) => {
     let position = {};
 
-    if(selectionRect.left < (0.05 * window.innerWidth)){
+    if (selectionRect.left < (0.05 * window.innerWidth)) {
       position = {
         top: (selectionRect.top - relativeRect.top) - (0.5 * toolbarHeight),
-        left: (selectionRect.left - relativeRect.left) + (0.04 * window.innerWidth)
-      }
-    }else if (selectionRect.left > (0.9 * window.innerWidth)){
+        left: (selectionRect.left - relativeRect.left) + (0.04 * window.innerWidth),
+      };
+    } else if (selectionRect.left > (0.9 * window.innerWidth)) {
       position = {
         top: (selectionRect.top - relativeRect.top) - (0.5 * toolbarHeight),
-        left: (selectionRect.left - relativeRect.left) - (0.04 * window.innerWidth)
-      }
-    }else{
+        left: (selectionRect.left - relativeRect.left) - (0.04 * window.innerWidth),
+      };
+    } else {
       position = {
         top: (selectionRect.top - relativeRect.top) - (0.5 * toolbarHeight),
-        left: (selectionRect.left - relativeRect.left) + (selectionRect.width/2)
-      }
+        left: (selectionRect.left - relativeRect.left) + (selectionRect.width / 2),
+      };
     }
     return position;
   }
@@ -68,8 +68,7 @@ export default class Toolbar extends React.Component {
    * this function again with `undefined` in order to reset `overrideContent`.
    * @param {Component} overrideContent
    */
-  onOverrideContent = (overrideContent) =>
-    this.setState({ overrideContent });
+  onOverrideContent = (overrideContent) => this.setState({ overrideContent });
 
   onSelectionChanged = () => {
     // need to wait a tick for window.getSelection() to be accurate
